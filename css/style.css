@@ -1,0 +1,26 @@
+
+.motocycle-slider {
+    display: flex;
+    justify-content: center;
+}
+.slider-block_prev {
+    display: flex;
+    align-items: center;
+    width: 80px;
+}
+.button-prev button {
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+}
+.slider-block_image img { height: 500px; }
+.slider-block_next {
+    display: flex;
+    align-items: center;
+    width: 80px;
+}
+.button-next button {
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+}
