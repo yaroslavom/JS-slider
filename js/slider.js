@@ -1,51 +1,64 @@
-var slider1 = {
-  //images array:  
-  imagesStack: [
-    "img/2000000053.jpeg",
-    "img/2000000054.jpeg",
-    "img/2000000055.jpeg",
-    "img/2000000056.jpeg",
-  ],
-  currentImageIndex: 0,
-  //find elements btn:
-  showPrevBtn: document.getElementById("show-prev"),
-  showNextBtn: document.getElementById("show-next"),
-  slideImage: document.getElementById("slide-img"),
+var sliderFatory = {
+  createNewSlider: function () {
+    var newSlider = {
+      //images array:
+      imagesStack: [
+        "img/2000000053.jpeg",
+        "img/2000000054.jpeg",
+        "img/2000000055.jpeg",
+        "img/2000000056.jpeg",
+      ],
+      currentImageIndex: 0,
 
-  start: function () {
-      var that = this;
+      showPrevBtn: null,
+      showNextBtn: null,
+      slideImage: null,
 
-    //add events:
-    this.showPrevBtn.addEventListener("click", function(e) { 
-        that.onShowPrevBtnClick(e)
-    });
-    this.showNextBtn.addEventListener("click", function(e) { 
-        that.onShowNextBtnClick(e) 
-    });
+      start: function (elId) {
+        var that = this;
 
-    this.slideImage.src = this.imagesStack[this.currentImageIndex];
-    this.showPrevBtn.hidden = true;
-  },
+        var elSelector = "#" + elId;
+        var el = document.querySelector(elSelector);
+        //find elements btn:
+        this.showPrevBtn = el.querySelector(".button-prev");
+        this.showNextBtn = el.querySelector(".button-next");
+        this.slideImage = el.querySelector(".slide-img");
 
-  onShowPrevBtnClick: function (event) {
-    this.currentImageIndex--;
-    this.slideImage.src = this.imagesStack[this.currentImageIndex];
-    this.showNextBtn.hidden = false;
+        //add events:
+        this.showPrevBtn.addEventListener("click", function (e) {
+          that.onShowPrevBtnClick(e);
+        });
+        this.showNextBtn.addEventListener("click", function (e) {
+          that.onShowNextBtnClick(e);
+        });
 
-    //disable prev button
-    if (this.currentImageIndex === 0) {
-      this.showPrevBtn.hidden = true;
-    }
-  },
+        this.slideImage.src = this.imagesStack[this.currentImageIndex];
+        this.showPrevBtn.hidden = true;
+      },
 
-  onShowNextBtnClick: function (event) {
-    this.currentImageIndex++;
-    this.slideImage.src = this.imagesStack[this.currentImageIndex];
-    this.showPrevBtn.hidden = false;
+      onShowPrevBtnClick: function (event) {
+        this.currentImageIndex--;
+        this.slideImage.src = this.imagesStack[this.currentImageIndex];
+        this.showNextBtn.hidden = false;
 
-    //disable next button
-    if (this.currentImageIndex === this.imagesStack.length - 1) {
-      this.showNextBtn.hidden = true;
-    }
+        //disable prev button
+        if (this.currentImageIndex === 0) {
+          this.showPrevBtn.hidden = true;
+        }
+      },
+
+      onShowNextBtnClick: function (event) {
+        this.currentImageIndex++;
+        this.slideImage.src = this.imagesStack[this.currentImageIndex];
+        this.showPrevBtn.hidden = false;
+
+        //disable next button
+        if (this.currentImageIndex === this.imagesStack.length - 1) {
+          this.showNextBtn.hidden = true;
+        }
+      },
+    };
+
+    return newSlider;
   },
 };
